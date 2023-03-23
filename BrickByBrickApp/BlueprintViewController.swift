@@ -1,29 +1,22 @@
 //
-//  LeftViewController.swift
+//  BlueprintViewController.swift
 //  BrickByBrickApp
 //
-//  Created by Newcomer, Grayson on 3/17/23.
+//  Created by Newcomer, Grayson on 3/23/23.
 //
 
 import UIKit
 
-class LeftViewController: UIViewController {
- 
+class BlueprintViewController: UIViewController {
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
+        let viewControllerToPresent = BlueprintViewController()
+        viewControllerToPresent.modalPresentationStyle = .fullScreen
+        navigationController?.present(viewControllerToPresent, animated: true, completion: nil)
     }
     
-    var myViewCont = LeftViewController()
-    
-    @IBOutlet var myStack: UIStackView!
-        
-    
-    
-    
-}
-
 
     /*
     // MARK: - Navigation
@@ -35,4 +28,4 @@ class LeftViewController: UIViewController {
     }
     */
 
-
+}

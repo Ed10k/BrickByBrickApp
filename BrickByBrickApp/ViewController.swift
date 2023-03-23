@@ -18,6 +18,10 @@ class ViewController: UIViewController {
     }
     
     
+    @IBAction func didTapBlueprintButt(_sender: Any){
+        
+    }
+    
     @IBAction func didTapProdButton(_sender: Any){
         self.performSegue(withIdentifier: "centerToLeftSegue", sender: self)
     }
