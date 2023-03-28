@@ -146,6 +146,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="GBj-ey-iMR"/>
         <segue reference="SWj-Xh-2mN"/>
     </inferredMetricsTieBreakers>
     <resources>
