@@ -15,7 +15,8 @@ class LeftViewController: UIViewController {
     @IBOutlet weak var progressView: UIView!
     
     var timer: Timer?
-    var timeLeft = 3600
+    //Should be changed to 3600 for real deal
+    var timeLeft = 10
     var minutesLeft = 60
     var secondsLeft = 0
     

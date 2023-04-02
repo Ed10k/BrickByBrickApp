@@ -23,7 +23,14 @@ class BlueprintViewController: UIViewController {
         viewControllerToPresent.modalPresentationStyle = .fullScreen
         navigationController?.present(viewControllerToPresent, animated: true, completion: nil)
         
+        let calendar = Calendar.current
+        var futureDate = calendar.date(byAdding: .weekOfMonth, value: 5, to: Date())
         
+        let dateFormatter = DateFormatter()
+        
+        dateFormatter.dateStyle = .medium
+        dateFormatter.timeStyle = .none
+        datedLabel.text = dateFormatter.string(from: futureDate!)
     }
     
     
@@ -50,6 +57,7 @@ class BlueprintViewController: UIViewController {
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
             datedLabel.text = dateFormatter.string(from: futureDate!)
+            levelLabel.text = "3"
             
         case 2:
             futureDate = calendar.date(byAdding: .weekOfMonth, value: 4, to: Date())
@@ -57,6 +65,8 @@ class BlueprintViewController: UIViewController {
             dateFormatter.dateStyle = .medium
             dateFormatter.timeStyle = .none
             datedLabel.text = dateFormatter.string(from: futureDate!)
+            levelLabel.text = "1"
+            
         default:
             break
         }
