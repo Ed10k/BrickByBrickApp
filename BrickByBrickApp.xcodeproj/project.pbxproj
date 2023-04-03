@@ -13,6 +13,8 @@
 		56593A4B29DB356800A4336B /* BrickByBrickApp.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9DFAA29C4D7AD0086979C /* BrickByBrickApp.xcdatamodeld */; };
 		56593A4E29DB358C00A4336B /* HabitToken+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56593A4C29DB358C00A4336B /* HabitToken+CoreDataClass.swift */; };
 		56593A4F29DB358C00A4336B /* HabitToken+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56593A4D29DB358C00A4336B /* HabitToken+CoreDataProperties.swift */; };
+		56593A5329DB91E900A4336B /* Habit+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56593A5129DB91E900A4336B /* Habit+CoreDataClass.swift */; };
+		56593A5429DB91E900A4336B /* Habit+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 56593A5229DB91E900A4336B /* Habit+CoreDataProperties.swift */; };
 		6AB9DFA229C4D7AD0086979C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9DFA129C4D7AD0086979C /* AppDelegate.swift */; };
 		6AB9DFA429C4D7AD0086979C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9DFA329C4D7AD0086979C /* SceneDelegate.swift */; };
 		6AB9DFA629C4D7AD0086979C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6AB9DFA529C4D7AD0086979C /* ViewController.swift */; };
@@ -48,6 +50,9 @@
 		56383EBD29DA5D36006214FD /* BrickByBrickApp 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "BrickByBrickApp 2.xcdatamodel"; sourceTree = "<group>"; };
 		56593A4C29DB358C00A4336B /* HabitToken+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitToken+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		56593A4D29DB358C00A4336B /* HabitToken+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "HabitToken+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		56593A5029DB912700A4336B /* BrickByBrickAppV3.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = BrickByBrickAppV3.xcdatamodel; sourceTree = "<group>"; };
+		56593A5129DB91E900A4336B /* Habit+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
+		56593A5229DB91E900A4336B /* Habit+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Habit+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
 		6AB9DF9E29C4D7AD0086979C /* BrickByBrickApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BrickByBrickApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AB9DFA129C4D7AD0086979C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		6AB9DFA329C4D7AD0086979C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -92,6 +97,8 @@
 		568F3CD929DA1B61008D30BF /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				56593A5129DB91E900A4336B /* Habit+CoreDataClass.swift */,
+				56593A5229DB91E900A4336B /* Habit+CoreDataProperties.swift */,
 				56593A4C29DB358C00A4336B /* HabitToken+CoreDataClass.swift */,
 				56593A4D29DB358C00A4336B /* HabitToken+CoreDataProperties.swift */,
 			);
@@ -289,9 +296,11 @@
 				56593A4F29DB358C00A4336B /* HabitToken+CoreDataProperties.swift in Sources */,
 				6AB9DFA629C4D7AD0086979C /* ViewController.swift in Sources */,
 				37C7F6FE29C4E0640068C288 /* RightViewController.swift in Sources */,
+				56593A5329DB91E900A4336B /* Habit+CoreDataClass.swift in Sources */,
 				6AB9DFA229C4D7AD0086979C /* AppDelegate.swift in Sources */,
 				37C7F6FC29C4E0260068C288 /* LeftViewController.swift in Sources */,
 				378DDFAF29CCB28300090107 /* BlueprintViewController.swift in Sources */,
+				56593A5429DB91E900A4336B /* Habit+CoreDataProperties.swift in Sources */,
 				56593A4E29DB358C00A4336B /* HabitToken+CoreDataClass.swift in Sources */,
 				6AB9DFA429C4D7AD0086979C /* SceneDelegate.swift in Sources */,
 			);
@@ -640,10 +649,11 @@
 		6AB9DFAA29C4D7AD0086979C /* BrickByBrickApp.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				56593A5029DB912700A4336B /* BrickByBrickAppV3.xcdatamodel */,
 				56383EBD29DA5D36006214FD /* BrickByBrickApp 2.xcdatamodel */,
 				6AB9DFAB29C4D7AD0086979C /* BrickByBrickApp.xcdatamodel */,
 			);
-			currentVersion = 6AB9DFAB29C4D7AD0086979C /* BrickByBrickApp.xcdatamodel */;
+			currentVersion = 56593A5029DB912700A4336B /* BrickByBrickAppV3.xcdatamodel */;
 			path = BrickByBrickApp.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

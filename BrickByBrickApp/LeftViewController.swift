@@ -19,9 +19,10 @@ class LeftViewController: UIViewController {
     
     var timer: Timer?
     //Should be changed to 3600 for real deal
-    var timeLeft = 10
+    var timeLeft = 3600
     var minutesLeft = 60
     var secondsLeft = 0
+    
     
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -49,6 +50,7 @@ class LeftViewController: UIViewController {
             }
         }
         super.viewWillDisappear(animated)
+        
     }
 
     override func viewDidLoad() {
@@ -67,6 +69,9 @@ class LeftViewController: UIViewController {
         coreLabel.text = String(amount)
     }
     
+    
+    
+
     
 
     

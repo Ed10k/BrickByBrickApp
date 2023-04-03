@@ -12,30 +12,93 @@ import CoreData
 class RightViewController: UIViewController {
  
     @IBOutlet weak var dateLabel: UILabel!
-
-    let motionManager = CMMotionManager()
+    @IBOutlet weak var levelLabel: UILabel!
+    @IBOutlet weak var nameLabel: UILabel!
+    
+    @IBOutlet weak var blockView: UIView!
+    
+    @IBOutlet weak var titleLabel: UILabel!
+    
+    @IBAction func didTapClearButt(_ sender: Any) {
+        dateLabel.text = "[date]"
+        nameLabel.text = "[name]"
+        levelLabel.text = "[level]"
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        let calendar = Calendar.current
-        let futureDate = calendar.date(byAdding: .weekOfMonth, value: 4, to: Date())
         
-        let dateFormatter = DateFormatter()
+        dateLabel.text = fetchHabitDate()
+        levelLabel.text = fetchHabitLevel()
+        nameLabel.text = fetchHabitName()
         
+        blockView.layer.cornerRadius = 20.0
+        blockView.layer.masksToBounds = true
         
-        dateFormatter.dateStyle = .medium
-        dateFormatter.timeStyle = .none
-        dateLabel.text = dateFormatter.string(from: futureDate!)
-        
-        motionManager.accelerometerUpdateInterval = 0.2 // Set the update interval to 0.2 seconds
-        motionManager.startAccelerometerUpdates(to: .main) { (data, error) in
-            guard let accelerometerData = data else { return }
-            
-            // Check for movement
-            if accelerometerData.acceleration.x > 0.1 || accelerometerData.acceleration.y > 0.1 || accelerometerData.acceleration.z > 0.1 {
-                // Perform function x()
-                self.subtractToken()
+        titleLabel.layer.cornerRadius = 20.0
+        titleLabel.layer.masksToBounds = true
             }
+    func fetchHabitDate() -> String? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return nil
+            }
+            // Return the value of the name attribute
+            return entity.dateCompleted
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+
+    func fetchHabitName() -> String? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return nil
+            }
+            // Return the value of the name attribute
+            return entity.name
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+            return nil
+        }
+    }
+    
+    func fetchHabitLevel() -> String? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return nil
+            }
+            // Return the value of the name attribute
+            return entity.level
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+            return nil
         }
     }
     

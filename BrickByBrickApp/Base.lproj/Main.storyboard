@@ -262,6 +262,7 @@
                                 <attributedString key="attributedText">
                                     <fragment content="BLUEPRINT">
                                         <attributes>
+                                            <color key="NSColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <font key="NSFont" size="30" name="AmericanTypewriter-Semibold"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                         </attributes>
@@ -309,7 +310,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="2" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" highlighted="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XWN-0d-Jum">
-                                <rect key="frame" x="175" y="211" width="92" height="40"/>
+                                <rect key="frame" x="175" y="211" width="69" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.3624896407" green="0.41671210530000002" blue="0.56203573939999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" name="AmericanTypewriter-Semibold" family="American Typewriter" pointSize="23"/>
@@ -351,7 +352,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="E24-sv-BGQ">
-                                <rect key="frame" x="188" y="316" width="119" height="44"/>
+                                <rect key="frame" x="188" y="316" width="142" height="44"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" red="0.36195081470000001" green="0.41645354029999998" blue="0.56038349870000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <attributedString key="attributedText">
@@ -375,6 +376,7 @@
                         <outlet property="datedLabel" destination="E24-sv-BGQ" id="Hbq-o2-TGu"/>
                         <outlet property="levelLabel" destination="XWN-0d-Jum" id="QO7-p7-Nnp"/>
                         <outlet property="segmentedControl" destination="NsS-Fy-BWz" id="Y2O-oD-ysh"/>
+                        <outlet property="titleLabel" destination="YX9-6f-H7m" id="CY6-4E-oyW"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e3D-xe-VGZ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -389,11 +391,25 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="783"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL1-7i-ay5">
+                                <rect key="frame" x="64" y="110" width="265" height="96"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.56446582079999996" green="0.60428649189999994" blue="0.70413321259999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <attributedString key="attributedText">
+                                    <fragment content="Your Habit">
+                                        <attributes>
+                                            <font key="NSFont" size="40" name="AmericanTypewriter-Semibold"/>
+                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                        </attributes>
+                                    </fragment>
+                                </attributedString>
+                                <nil key="highlightedColor"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLb-cA-F7c">
-                                <rect key="frame" x="171" y="241" width="128" height="28"/>
+                                <rect key="frame" x="171" y="241" width="158" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="Journaling">
+                                    <fragment content="name">
                                         <attributes>
                                             <font key="NSFont" size="24" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -455,10 +471,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Eus-uV-smO">
-                                <rect key="frame" x="210" y="288" width="16" height="28"/>
+                                <rect key="frame" x="210" y="288" width="88" height="28"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <attributedString key="attributedText">
-                                    <fragment content="1">
+                                    <fragment content="lvl">
                                         <attributes>
                                             <font key="NSFont" size="24" name="AmericanTypewriter"/>
                                             <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
@@ -467,26 +483,31 @@
                                 </attributedString>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yL1-7i-ay5">
-                                <rect key="frame" x="64" y="110" width="265" height="96"/>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LSc-Xy-3Q2">
+                                <rect key="frame" x="48" y="674" width="64" height="35"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <attributedString key="attributedText">
-                                    <fragment content="Your Habit">
-                                        <attributes>
-                                            <font key="NSFont" size="40" name="AmericanTypewriter-Semibold"/>
-                                            <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
-                                        </attributes>
-                                    </fragment>
-                                </attributedString>
-                                <nil key="highlightedColor"/>
-                            </label>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Clear"/>
+                                <connections>
+                                    <action selector="didTapClearButt:" destination="1zn-wg-Slm" eventType="touchUpInside" id="7y7-59-FeJ"/>
+                                </connections>
+                            </button>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lB1-Ps-YS1">
+                                <rect key="frame" x="32" y="426" width="329" height="208"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.88737654690000001" green="0.8513798118" blue="0.69992703199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="ziA-7J-zRl"/>
                         <color key="backgroundColor" red="0.71299841674520625" green="0.75740506255890472" blue="0.890625" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
                     <navigationItem key="navigationItem" style="editor" id="xEh-ic-0rS"/>
                     <connections>
+                        <outlet property="blockView" destination="lB1-Ps-YS1" id="Srf-ic-c4d"/>
                         <outlet property="dateLabel" destination="axa-jX-m9z" id="iQE-7Q-Ogi"/>
+                        <outlet property="levelLabel" destination="Eus-uV-smO" id="j6F-fN-5hm"/>
+                        <outlet property="nameLabel" destination="sLb-cA-F7c" id="IiM-VU-VFG"/>
+                        <outlet property="titleLabel" destination="yL1-7i-ay5" id="HQy-A3-aap"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="rightToCenterSegue" id="yuk-86-qRd"/>
                     </connections>
                 </viewController>
@@ -514,6 +535,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="3f3-AU-3sT"/>
         <segue reference="yuk-86-qRd"/>
     </inferredMetricsTieBreakers>
     <resources>

@@ -13,6 +13,7 @@ class BlueprintViewController: UIViewController {
     @IBOutlet weak var levelLabel: UILabel!
     
     
+    @IBOutlet weak var titleLabel: UILabel!
     
     
     
@@ -36,34 +37,84 @@ class BlueprintViewController: UIViewController {
         dateFormatter.timeStyle = .none
         datedLabel.text = dateFormatter.string(from: futureDate!)
         
-        //core data slih
+        levelLabel.layer.cornerRadius = 20.0
+        levelLabel.layer.masksToBounds = true
+        
+        datedLabel.layer.cornerRadius = 20.0
+        datedLabel.layer.masksToBounds = true
+        
+        titleLabel.layer.cornerRadius = 20.0
+        titleLabel.layer.masksToBounds = true
 
     }
     
-//    func decrementAmount() {
-//        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
-//            return
-//        }
-//        let managedContext = appDelegate.persistentContainer.viewContext
-//
-//        let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
-//        do {
-//            let entities = try managedContext.fetch(fetchRequest)
-//            guard let entity = entities.first else {
-//                return
-//            }
-//            // Increment the amount attribute
-//            entity.amount -= 3
-//
-//            // Save the changes
-//            try managedContext.save()
-//
-//        } catch let error as NSError {
-//            print("Could not fetch entities. \(error), \(error.userInfo)")
-//        }
-//    }
+    func setDateToDatedLabel() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.dateCompleted = datedLabel.text ?? ""
+            print("Habit date set.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
+
+    func setNameToSegContLabel() {
+        let selectedSegmentTitle = segmentedControl.titleForSegment(at: segmentedControl.selectedSegmentIndex)
+
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.name = selectedSegmentTitle ?? ""
+            print("Habit name set.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
     
-    
+    func setLevelToLevelLabel() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.level = levelLabel.text ?? ""
+            print("Habit level set.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
 
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -71,6 +122,7 @@ class BlueprintViewController: UIViewController {
     @IBOutlet weak var datedLabel: UILabel!
     
     @IBAction func didTapSubmitButt(_ sender: UIButton) {
+        
         
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
                 return
@@ -92,6 +144,9 @@ class BlueprintViewController: UIViewController {
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)
                 } else {
+                    setDateToDatedLabel()
+                    setLevelToLevelLabel()
+                    setNameToSegContLabel()
                     entity.amount -= 3
                     
                     
