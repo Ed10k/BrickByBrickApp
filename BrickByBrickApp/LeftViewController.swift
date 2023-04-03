@@ -6,10 +6,13 @@
 //
 
 import UIKit
+import CoreData
 
 class LeftViewController: UIViewController {
  
+    var amount: Int = 0
 
+    @IBOutlet weak var coreLabel: UILabel!
     @IBOutlet weak var timerLabel: UILabel!
     
     @IBOutlet weak var progressView: UIView!
@@ -20,6 +23,34 @@ class LeftViewController: UIViewController {
     var minutesLeft = 60
     var secondsLeft = 0
     
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        // Subtract 1 token
+        if(timer != nil){
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+                return
+            }
+            let managedContext = appDelegate.persistentContainer.viewContext
+            
+            let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
+            do {
+                let entities = try managedContext.fetch(fetchRequest)
+                guard let entity = entities.first else {
+                    return
+                }
+                // Decrement the amount attribute
+                entity.amount -= 1
+                
+                // Save the changes
+                try managedContext.save()
+                
+            } catch let error as NSError {
+                print("Could not fetch entities. \(error), \(error.userInfo)")
+            }
+        }
+        super.viewWillDisappear(animated)
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -33,6 +64,7 @@ class LeftViewController: UIViewController {
             circleLayer.lineWidth = 10
             circleLayer.strokeEnd = 1
             progressView.layer.addSublayer(circleLayer)
+        coreLabel.text = String(amount)
     }
     
     
@@ -48,14 +80,65 @@ class LeftViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
         let stopAction = UIAlertAction(title: "Stop", style: .destructive, handler: { [weak self] (_) in
                 self?.stopTimer()
+            self?.decrementAmount()
         })
             alert.addAction(cancelAction)
             alert.addAction(stopAction)
             present(alert, animated: true, completion: nil)
     }
 
+    func decrementAmount() {
+        print("decrementing!")
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return
+            }
+            // Decrement the amount attribute
+            entity.amount -= 1
+            
+            // Save the changes
+            try managedContext.save()
+            
+            coreLabel.text = String(entity.amount)
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+        }
+    }
     
-    
+    func incrementAmount() {
+        print("incrementing!")
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return
+            }
+            // Increment the amount attribute
+            entity.amount += 1
+            
+            // Save the changes
+            try managedContext.save()
+            
+            coreLabel.text = String(entity.amount)
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+        }
+    }
+
     
     
     func updateTimer() {
@@ -65,12 +148,16 @@ class LeftViewController: UIViewController {
         timerLabel.text = String(format: "%02d:%02d", minutesLeft, secondsLeft)
         
         if timeLeft == 0 {
+            //time hits 0 DATA
+            
             timer?.invalidate()
             timer = nil
         }
     }
 
     func startTimer() {
+        incrementAmount()
+
         timer?.invalidate()
         timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true) { [weak self] (_) in
             guard let self = self else { return }

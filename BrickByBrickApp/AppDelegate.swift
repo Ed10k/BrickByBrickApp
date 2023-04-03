@@ -17,8 +17,30 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         
-            
             return true
+    }
+    func applicationWillResignActive(_ application: UIApplication) {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        print("Bravo six, going dark")
+        let managedContext = appDelegate.persistentContainer.viewContext
+        
+        let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
+        do {
+            let entities = try managedContext.fetch(fetchRequest)
+            guard let entity = entities.first else {
+                return
+            }
+            // Decrement the amount attribute
+            entity.amount -= 1
+            
+            // Save the changes
+            try managedContext.save()
+            
+        } catch let error as NSError {
+            print("Could not fetch entities. \(error), \(error.userInfo)")
+        }
     }
 
     // MARK: UISceneSession Lifecycle
@@ -49,7 +71,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             if let error = error as NSError? {
                 // Replace this implementation with code to handle the error appropriately.
                 // fatalError() causes the application to generate a crash log and terminate. You should not use this function in a shipping application, although it may be useful during development.
-                 
+                
+
                 /*
                  Typical reasons for an error here include:
                  * The parent directory does not exist, cannot be created, or disallows writing.

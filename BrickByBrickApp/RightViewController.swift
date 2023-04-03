@@ -9,14 +9,26 @@ import UIKit
 
 class RightViewController: UIViewController {
  
+    @IBOutlet weak var dateLabel: UILabel!
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        let calendar = Calendar.current
+        var futureDate = calendar.date(byAdding: .weekOfMonth, value: 4, to: Date())
+        
+        let dateFormatter = DateFormatter()
+        
+        
+            dateFormatter.dateStyle = .medium
+            dateFormatter.timeStyle = .none
+            dateLabel.text = dateFormatter.string(from: futureDate!)
     }
     
-    @IBAction func didTapHome(_sender: Any){
-        self.performSegue(withIdentifier: "rightToCenterSegue", sender: self)
-    }
-
+    
+    
+    
+    
+    
 }
     
 

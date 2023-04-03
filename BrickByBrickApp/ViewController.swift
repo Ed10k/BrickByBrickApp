@@ -11,12 +11,16 @@ import CoreData
 
 class ViewController: UIViewController {
     
+    
+
+    
+
+
 
     
 
         @IBOutlet weak var myLabel: UILabel!
     
-    // The managed object context for Core Data
     lazy var persistentContainer: NSPersistentContainer = {
         
         let container = NSPersistentContainer(name: "BrickByBrickApp")
@@ -32,7 +36,29 @@ class ViewController: UIViewController {
         var managedObjectContext: NSManagedObjectContext {
             persistentContainer.viewContext
         }
+    
 
+        
+        override func viewWillAppear(_ animated: Bool) {
+            super.viewWillAppear(animated)
+            
+            // Fetch the updated amount from Core Data
+            guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
+            let context = appDelegate.persistentContainer.viewContext
+            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "HabitToken")
+            do {
+                let result = try managedObjectContext.fetch(fetchRequest)
+                if let entity = result.first {
+                    let amount = entity.value(forKey: "amount") as? Int ?? 0
+                    myLabel.text = "\(amount)"
+                }
+            } catch let error as NSError {
+                print("Could not fetch. \(error), \(error.userInfo)")
+            }
+        }
+    
+
+    
         override func viewDidLoad() {
             super.viewDidLoad()
 
@@ -53,7 +79,34 @@ class ViewController: UIViewController {
             // Fetch the Core Data entity you're interested in
             fetchTokens()
         }
+    
+    
+    
+    @IBAction func didTapHabit(_ sender: Any) {
+        performSegue(withIdentifier: "centerToRightSegue", sender: self)
+    }
+    
+    func navigateToAnotherViewController() {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let anotherViewController = storyboard.instantiateViewController(withIdentifier: "LeftViewController") as! LeftViewController
+        let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
+        
+        do {
+            let result = try managedObjectContext.fetch(fetchRequest)
+            if let myEntity = result.first {
+                anotherViewController.amount = Int(myEntity.amount)
+            } else {
+                print("No results found")
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        
+        navigationController?.pushViewController(anotherViewController, animated: true)
+    }
 
+    
     func fetchTokens()  {
         let fetchRequest: NSFetchRequest<HabitToken> = HabitToken.fetchRequest()
 
@@ -141,11 +194,12 @@ class ViewController: UIViewController {
     }
     
     @IBAction func didTapBlueprintButt(_sender: Any){
-        
+        navigateToAnotherViewController()
     }
     
     @IBAction func didTapProdButton(_sender: Any){
-        self.performSegue(withIdentifier: "centerToLeftSegue", sender: self)
+        navigateToAnotherViewController()
+        
     }
     
     @IBAction func didTapSettingsButt(_sender: Any){
