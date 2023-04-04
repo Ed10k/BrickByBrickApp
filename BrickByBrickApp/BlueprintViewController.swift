@@ -139,8 +139,8 @@ class BlueprintViewController: UIViewController {
                 
                 
                 if entity.amount < 3 {
-                    let alertController = UIAlertController(title: "Error", message: "Amount must be at least 3", preferredStyle: .alert)
-                    let okAction = UIAlertAction(title: "OK", style: .default, handler: nil)
+                    let alertController = UIAlertController(title: "Oops!", message: "Must have at least 3 Habit Tokens.   You got this.", preferredStyle: .alert)
+                    let okAction = UIAlertAction(title: "I will be productive", style: .default, handler: nil)
                     alertController.addAction(okAction)
                     present(alertController, animated: true, completion: nil)
                 } else {

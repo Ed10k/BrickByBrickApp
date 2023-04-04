@@ -11,6 +11,7 @@ import CoreData
 
 class RightViewController: UIViewController {
  
+    @IBOutlet weak var weeklyLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var levelLabel: UILabel!
     @IBOutlet weak var nameLabel: UILabel!
@@ -20,11 +21,80 @@ class RightViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel!
     
     @IBAction func didTapClearButt(_ sender: Any) {
-        dateLabel.text = "[date]"
-        nameLabel.text = "[name]"
-        levelLabel.text = "[level]"
+        dateLabel.text = ""
+        nameLabel.text = ""
+        levelLabel.text = ""
+        weeklyLabel.text = ""
+        clearDate()
+        clearName()
+        clearLevel()
     }
     
+    func clearName() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.name =  ""
+            print("Habit date cleared.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func clearLevel() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.level =  ""
+            print("Habit name cleared.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
+    
+    func clearDate() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+        let managedContext = appDelegate.persistentContainer.viewContext
+
+        let fetchRequest: NSFetchRequest<Habit> = Habit.fetchRequest()
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            guard let habit = habits.first else {
+                return
+            }
+            habit.dateCompleted =  ""
+            print("Habit date cleared.")
+            // Save the changes
+            try managedContext.save()
+
+        } catch let error as NSError {
+            print("Could not fetch habits. \(error), \(error.userInfo)")
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -38,7 +108,29 @@ class RightViewController: UIViewController {
         
         titleLabel.layer.cornerRadius = 20.0
         titleLabel.layer.masksToBounds = true
-            }
+        
+        
+        let habitName = fetchHabitName()
+        var weeklyText = weeklyGenerator(name: habitName ?? "")
+        
+        weeklyLabel.text = weeklyText
+    }
+    
+    func weeklyGenerator(name: String) -> String {
+        switch name {
+        case "Journaling":
+            return "Week 1: Open your journal everyday.\nWeek 2: Write a sentence everyday.\nWeek 3: Journal everyday!"
+        case "Working Out":
+            return "Week 1: Put your gym shoes on everyday.\nWeek 2: Show up to the gym everyday.\nWeek 3: Go to the gym, do 1 exercise everyday.\nWeek 4: Go to the gym, do 3 exercises everyday.\nWeek 5: Go to the gym and work out everyday!"
+        case "Reading":
+            return "Week 1: Open a book everyday.\nWeek 2: Read a paragraph everyday.\nWeek 3: Read 2 pages everyday.\nWeek 4: Read everyday!"
+        default:
+            return ""
+        }
+    }
+
+    
+    
     func fetchHabitDate() -> String? {
         guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
             return nil

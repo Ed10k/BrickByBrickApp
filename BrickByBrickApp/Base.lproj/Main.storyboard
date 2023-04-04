@@ -153,7 +153,7 @@
                                     <segue destination="ssy-Q6-Gy5" kind="presentation" id="9v9-d1-e0B"/>
                                 </connections>
                             </button>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="houseconstruct" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-D1-Oqz">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="house1" translatesAutoresizingMaskIntoConstraints="NO" id="Bil-D1-Oqz">
                                 <rect key="frame" x="76" y="263" width="240" height="241"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
@@ -220,6 +220,13 @@
                                     <action selector="didTapHabit:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iuj-aS-Kwz"/>
                                 </connections>
                             </button>
+                            <slider opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="6" translatesAutoresizingMaskIntoConstraints="NO" id="WXf-ok-L5H">
+                                <rect key="frame" x="83" y="512" width="227" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <connections>
+                                    <action selector="sliderValueChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="oCB-ao-iSE"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -227,6 +234,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="IBF-OM-6VT"/>
                     <connections>
+                        <outlet property="houseImage" destination="Bil-D1-Oqz" id="SMM-Si-Q1o"/>
                         <outlet property="myLabel" destination="b72-Ja-UoM" id="7Ug-MB-HIg"/>
                         <segue destination="YCp-M2-3rp" kind="show" identifier="centerToLeftSegue" id="GBj-ey-iMR"/>
                         <segue destination="1zn-wg-Slm" kind="show" identifier="centerToRightSegue" id="3f3-AU-3sT"/>
@@ -495,6 +503,22 @@
                             <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lB1-Ps-YS1">
                                 <rect key="frame" x="32" y="426" width="329" height="208"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="7" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iRt-Iw-MG7">
+                                        <rect key="frame" x="2" y="-68" width="339" height="292"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <attributedString key="attributedText">
+                                            <fragment content="Label">
+                                                <attributes>
+                                                    <color key="NSColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                    <font key="NSFont" size="14" name="AmericanTypewriter"/>
+                                                    <paragraphStyle key="NSParagraphStyle" alignment="left" lineBreakMode="wordWrapping" baseWritingDirection="natural" lineSpacing="3" lineHeightMultiple="1" tighteningFactorForTruncation="0.0"/>
+                                                </attributes>
+                                            </fragment>
+                                        </attributedString>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
                                 <color key="backgroundColor" red="0.88737654690000001" green="0.8513798118" blue="0.69992703199999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </view>
                         </subviews>
@@ -508,6 +532,7 @@
                         <outlet property="levelLabel" destination="Eus-uV-smO" id="j6F-fN-5hm"/>
                         <outlet property="nameLabel" destination="sLb-cA-F7c" id="IiM-VU-VFG"/>
                         <outlet property="titleLabel" destination="yL1-7i-ay5" id="HQy-A3-aap"/>
+                        <outlet property="weeklyLabel" destination="iRt-Iw-MG7" id="Ww1-zO-XrC"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="rightToCenterSegue" id="yuk-86-qRd"/>
                     </connections>
                 </viewController>
@@ -535,13 +560,12 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="3f3-AU-3sT"/>
         <segue reference="yuk-86-qRd"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="HabitToken" width="960" height="720"/>
         <image name="blueprint" width="768" height="768"/>
-        <image name="houseconstruct" width="226" height="195"/>
+        <image name="house1" width="224" height="140"/>
         <systemColor name="systemBlueColor">
             <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

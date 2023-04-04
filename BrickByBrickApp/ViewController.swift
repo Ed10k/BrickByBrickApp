@@ -16,8 +16,38 @@ class ViewController: UIViewController {
     
     
     
-
-
+    
+    @IBAction func sliderValueChanged(_ sender: UISlider) {
+        let sliderValue = Int(sender.value)
+            
+            switch sliderValue {
+            case 0:
+                houseImage.image = UIImage(named: "house1")
+                break
+            case 1:
+                houseImage.image = UIImage(named: "house2")
+                break
+            case 2:
+                houseImage.image = UIImage(named: "house3")
+                break
+            case 3:
+                houseImage.image = UIImage(named: "house4")
+                break
+            case 4:
+                houseImage.image = UIImage(named: "house5")
+                break
+            case 5:
+                houseImage.image = UIImage(named: "house6")
+                break
+            case 6:
+                houseImage.image = UIImage(named: "house7")
+                break
+            default:
+                break
+            }
+    }
+    
+    @IBOutlet weak var houseImage: UIImageView!
     
 
         @IBOutlet weak var myLabel: UILabel!
@@ -42,7 +72,14 @@ class ViewController: UIViewController {
         
         override func viewWillAppear(_ animated: Bool) {
             super.viewWillAppear(animated)
-            
+            let habitName = fetchHabitName()
+            if(habitName != ""){
+                houseImage.image = UIImage(named: "house2")
+            }
+            else{
+                houseImage.image = UIImage(named: "house1")
+
+            }
             // Fetch the updated amount from Core Data
             guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
             let context = appDelegate.persistentContainer.viewContext
@@ -56,6 +93,8 @@ class ViewController: UIViewController {
             } catch let error as NSError {
                 print("Could not fetch. \(error), \(error.userInfo)")
             }
+            
+            
         }
     
 
@@ -75,6 +114,8 @@ class ViewController: UIViewController {
             } catch let error as NSError {
                 print("Could not save. \(error), \(error.userInfo)")
             }
+            
+            
 
 
             // Fetch the Core Data entity you're interested in
@@ -84,8 +125,40 @@ class ViewController: UIViewController {
     
     
     @IBAction func didTapHabit(_ sender: Any) {
-        performSegue(withIdentifier: "centerToRightSegue", sender: self)
+        let habitName = fetchHabitName()
+        if(habitName == ""){
+            let alertController = UIAlertController(title: "Oops!", message: "Looks like you haven't started any habits yet...", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "I will be productive", style: .default, handler: nil)
+            alertController.addAction(okAction)
+            present(alertController, animated: true, completion: nil)
+        }
+        else{
+            performSegue(withIdentifier: "centerToRightSegue", sender: self)
+
+        }
+            
+        }
+    
+    func fetchHabitName() -> String? {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            return nil
+        }
+        
+        let managedContext = appDelegate.persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Habit")
+        
+        do {
+            let habits = try managedContext.fetch(fetchRequest)
+            if let habit = habits.first, let name = habit.value(forKey: "name") as? String {
+                return name
+            }
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+        }
+        
+        return nil
     }
+
     
     func navigateToAnotherViewController() {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
